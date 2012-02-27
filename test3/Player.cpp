@@ -1,6 +1,6 @@
 #include "Player.h"
 
-//intŒ^‚Í32bit‚È‚Ì‚Å‹L‰¯‚Å‚«‚éƒL[‚Í32ŒÂ‚Ü‚Å
+//intå‹ã¯32bitãªã®ã§è¨˜æ†¶ã§ãã‚‹ã‚­ãƒ¼ã¯32å€‹ã¾ã§
 int g_keys[]= {GLUT_KEY_UP,GLUT_KEY_DOWN,
 	GLUT_KEY_LEFT,GLUT_KEY_RIGHT,
 	' ','h','j','k','l','u','i','z','x'
@@ -27,12 +27,12 @@ void Player::Render3D(){
 
 	Move();
 	glPushMatrix();
-	glTranslated(model_pos.x, model_pos.y, model_pos.z);	//ˆÚ“®
+	glTranslated(model_pos.x, model_pos.y, model_pos.z);	//ç§»å‹•
 	glRotated(ay,0.0,1.0,0.0);
 
-	//@ƒ‚ƒfƒ‹‚Ì•`‰æ
-	float scale = 2.0f/model.sphere.radius;	//@Šg‘åŒW”
-	model.Render(scale);	//@•`‰æ
+	//ã€€ãƒ¢ãƒ‡ãƒ«ã®æç”»
+	float scale = 2.0f/model.sphere.radius;	//ã€€æ‹¡å¤§ä¿‚æ•°
+	model.Render(scale);	//ã€€æç”»
 //	mqoCallModel(mqoModel);
 
 	glPopMatrix();
@@ -100,7 +100,7 @@ void Player::Move(){
 }
 
 void Player::LookpointSet(){
-	//‹“_ˆÚ“®
+	//è¦–ç‚¹ç§»å‹•
 	if(KeyStateGet('h')){
 		cam_angle[0] -= M_PI/180.0;
 		if(cam_angle[0] < 0) cam_angle[0] += 2*M_PI;
@@ -125,7 +125,7 @@ void Player::LookpointSet(){
 	target_pos.y=model_pos.y;
 	target_pos.z=model_pos.z;
 
-	//@‹“_‚Ìİ’è
+	//ã€€è¦–ç‚¹ã®è¨­å®š
 	gluLookAt(cam_pos.x, cam_pos.y, cam_pos.z,
 		target_pos.x, target_pos.y, target_pos.z,
 		0.0,1.0,0.0);	

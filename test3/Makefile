@@ -8,7 +8,7 @@
 # Build target
 #
 
-# ƒ^[ƒQƒbƒgƒtƒ@ƒCƒ‹ (¶¬‚·‚éŽÀsƒtƒ@ƒCƒ‹)
+# ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ•ã‚¡ã‚¤ãƒ« (ç”Ÿæˆã™ã‚‹å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«)
 TARGET = a.exe
 TARGET_LINUX = a.out
 
@@ -23,55 +23,55 @@ CXX = g++
 RM = rm
 
 ########################################################
-#  ƒRƒ“ƒpƒCƒ‹ƒIƒvƒVƒ‡ƒ“‚ÌÝ’è
+#  ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®è¨­å®š
 #
 
-# ’Ç‰Á‚ÌƒCƒ“ƒNƒ‹[ƒhƒpƒX
+# è¿½åŠ ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ‘ã‚¹
 CXXFLAGS =
 
-# ƒŠƒŠ[ƒXŽž‚ÌƒRƒ“ƒpƒCƒ‹ƒIƒvƒVƒ‡ƒ“
+# ãƒªãƒªãƒ¼ã‚¹æ™‚ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 #CXXFLAGS += -O3 -Wall
 
-# ƒfƒoƒbƒOŽž‚ÌƒRƒ“ƒpƒCƒ‹ƒIƒvƒVƒ‡ƒ“
+# ãƒ‡ãƒãƒƒã‚°æ™‚ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 CXXFLAGS += -g -pg -O0 -Wall
 
 ########################################################
-# ƒŠƒ“ƒJƒIƒvƒVƒ‡ƒ“‚ÌÝ’è
+# ãƒªãƒ³ã‚«ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®è¨­å®š
 #
 
-# ’Ç‰Á‚Ìƒ‰ƒCƒuƒ‰ƒŠ
+# è¿½åŠ ã®ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
 #
 LDFLAGS = -lglew32 -lfreeglut -lglu32 -lopengl32 -lwinmm -lgdi32
 LDFLAGS_LINUX = -lglut -lGLU -lGL
 
-# GUI ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ðƒRƒ“ƒpƒCƒ‹‚·‚éÛ‚ÌƒŠƒ“ƒJƒIƒvƒVƒ‡ƒ“
+# GUI ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã™ã‚‹éš›ã®ãƒªãƒ³ã‚«ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 #
-#   ^‚Á•‚ÈƒRƒ}ƒ“ƒhƒvƒƒ“ƒvƒg‚ªo‚Ä‚«‚ÄƒCƒ„[ƒ“‚Èl‚ÍA
-#   ˆÈ‰º‚ÌƒRƒƒ“ƒg‚ðŠO‚µ‚Ä‚­‚¾‚³‚¢B
+#   çœŸã£é»’ãªã‚³ãƒžãƒ³ãƒ‰ãƒ—ãƒ­ãƒ³ãƒ—ãƒˆãŒå‡ºã¦ãã¦ã‚¤ãƒ¤ãƒ¼ãƒ³ãªäººã¯ã€
+#   ä»¥ä¸‹ã®ã‚³ãƒ¡ãƒ³ãƒˆã‚’å¤–ã—ã¦ãã ã•ã„ã€‚
 #
 #LDFLAGS += -mwindows
 
 ########################################################
 ########################################################
-# ƒRƒ“ƒpƒCƒ‹‚·‚éƒ\[ƒXƒtƒ@ƒCƒ‹‚Ì‚ ‚éƒfƒBƒŒƒNƒgƒŠ
+# ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã™ã‚‹ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
 #
-#   ƒƒCƒ‹ƒhƒJ[ƒh (*) ‚àŽg‚¦‚Ü‚·B
-#   ‚±‚Ì—á‚Å‚ÍAƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚É‚ ‚éA‚·‚×‚Ä‚ÌCŒ¾Œê
-#   ƒ\[ƒXƒtƒ@ƒCƒ‹‚ðƒRƒ“ƒpƒCƒ‹‚µ‚Ü‚·B
+#   ãƒ¯ã‚¤ãƒ«ãƒ‰ã‚«ãƒ¼ãƒ‰ (*) ã‚‚ä½¿ãˆã¾ã™ã€‚
+#   ã“ã®ä¾‹ã§ã¯ã€ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«ã‚ã‚‹ã€ã™ã¹ã¦ã®Cè¨€èªž
+#   ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã—ã¾ã™ã€‚
 #
-INCLUDES = . ./* # ˆÈ‰ºA•K—v‚È‚¾‚¯ ./*/* ./*/*/*... ‚ðŒJ‚è•Ô‚·
+INCLUDES = . ./* # ä»¥ä¸‹ã€å¿…è¦ãªã ã‘ ./*/* ./*/*/*... ã‚’ç¹°ã‚Šè¿”ã™
 
 ########################################################
-# œŠO‚·‚éƒtƒ@ƒCƒ‹
+# é™¤å¤–ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«
 #
-#   ƒƒCƒ‹ƒhƒJ[ƒh (*) ‚àŽg‚¦‚Ü‚·B
-#   ‚±‚±‚ÅŽw’è‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ÍƒRƒ“ƒpƒCƒ‹‚³‚ê‚Ü‚¹‚ñB
-#   ƒeƒXƒg—p‚Ìƒ\[ƒXƒtƒ@ƒCƒ‹‚È‚Ç‚Í‚±‚±‚ÅŽw’è‚µ‚Ä‚­‚¾‚³‚¢B
+#   ãƒ¯ã‚¤ãƒ«ãƒ‰ã‚«ãƒ¼ãƒ‰ (*) ã‚‚ä½¿ãˆã¾ã™ã€‚
+#   ã“ã“ã§æŒ‡å®šã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã¯ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã•ã‚Œã¾ã›ã‚“ã€‚
+#   ãƒ†ã‚¹ãƒˆç”¨ã®ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ãªã©ã¯ã“ã“ã§æŒ‡å®šã—ã¦ãã ã•ã„ã€‚
 #
 EXCLUDES = ./XMesh/XLoader_sub.cpp
 
 ########################################################
-# ƒ\[ƒXƒtƒ@ƒCƒ‹‚ÌŒŸõ / œŠO
+# ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã®æ¤œç´¢ / é™¤å¤–
 #
 SRC := $(wildcard $(addsuffix /*.cpp, $(INCLUDES)))
 SRC := $(filter-out $(wildcard $(EXCLUDES)), $(SRC))
@@ -80,39 +80,39 @@ OBJS := $(SRC:.cpp=.o)
 DEPENDS :=$(SRC:.cpp=.d)
 
 ########################################################
-# ƒTƒtƒBƒbƒNƒXƒ‹[ƒ‹
+# ã‚µãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒ«ãƒ¼ãƒ«
 #
 
-# *.cpp ƒtƒ@ƒCƒ‹‚©‚ç *.oƒtƒ@ƒCƒ‹‚ð¶¬ (ƒRƒ“ƒpƒCƒ‹)
+# *.cpp ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ *.oãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç”Ÿæˆ (ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«)
 .SUFFIXES: .cpp .o
 
 .cpp.o:
 	$(CXX) -c -o $@ $(CXXFLAGS) $<
 
 ########################################################
-# make ƒrƒ‹ƒhƒ‹[ƒ‹
+# make ãƒ“ãƒ«ãƒ‰ãƒ«ãƒ¼ãƒ«
 #
 
 # all: (default target)
 .PHONY: all
 all: $(TARGET)
 
-# linux: linux—p *.out ƒtƒ@ƒCƒ‹‚Ìƒrƒ‹ƒh
+# linux: linuxç”¨ *.out ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ“ãƒ«ãƒ‰
 .PHONY: linux
 linux: $(TARGET_LINUX)
 $(TARGET_LINUX): $(OBJS)
 	$(CXX) $^ $(CXXFLAGS) $(LDFLAGS_LINUX) -o $@
 
-# clean: ¶¬‚µ‚½ƒ^[ƒQƒbƒg (*.o) ‚ðíœ
+# clean: ç”Ÿæˆã—ãŸã‚¿ãƒ¼ã‚²ãƒƒãƒˆ (*.o) ã‚’å‰Šé™¤
 .PHONY: clean
 clean:
 	$(RM) $(OBJS) $(DEPENDS)
 
-# ƒ^[ƒQƒbƒgƒtƒ@ƒCƒ‹: *.exe ƒtƒ@ƒCƒ‹‚Ìƒrƒ‹ƒh
+# ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ•ã‚¡ã‚¤ãƒ«: *.exe ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ“ãƒ«ãƒ‰
 $(TARGET): $(OBJS)
 	$(CXX) $^ $(CXXFLAGS) $(LDFLAGS) -o $@
 
-# ƒwƒbƒ_[ƒtƒ@ƒCƒ‹‚ÌˆË‘¶ŠÖŒW
+# ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã®ä¾å­˜é–¢ä¿‚
 %.d: %.cpp
 	@set -e; $(CXX) -MM $(CXXFLAGS) $< \
 	| sed 's/\($*\)\.o[ :]*/\1.o $@ : /g' > $@; \

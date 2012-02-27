@@ -35,17 +35,17 @@ void Timer(int value);
 
 //----------------------------------------------------------------------------------------------------
 // Name : main()
-// Desc : ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg
+// Desc : ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆ
 //----------------------------------------------------------------------------------------------------
 int main( int argc, char **argv ){
-	//@GLUTƒR[ƒ‹ƒoƒbƒNŠÖ”‚È‚Ç‚Ìİ’è
+	//ã€€GLUTã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ãªã©ã®è¨­å®š
 	glutInit(&argc, argv);
 	glutInitWindowPosition(WindowPositionX, WindowPositionY);
 	glutInitWindowSize(WindowWidth, WindowHeight);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
 	glutCreateWindow(WindowTitle);
 	glutDisplayFunc(Display);
-	glutCloseFunc(Close);	//ƒEƒBƒ“ƒhƒE‚ª•Â‚¶‚ç‚ê‚½‚Æ‚«
+	glutCloseFunc(Close);	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒé–‰ã˜ã‚‰ã‚ŒãŸã¨ã
 	glutReshapeFunc(Reshape);
 	glutMouseFunc(Mouse);
 	glutMotionFunc(Motion);
@@ -54,11 +54,11 @@ int main( int argc, char **argv ){
 	glutKeyboardUpFunc(KeyboardUp);
 	glutSpecialFunc(Special);
 	glutSpecialUpFunc(SpecialUp);
-	Initialize();	//@OpenGL‰Šú‰»
+	Initialize();	//ã€€OpenGLåˆæœŸåŒ–
 
 	glutTimerFunc( TIMER_WAIT, Timer, 0);
 //	glutIdleFunc(Idle);
-	glutMainLoop();	//@ƒƒCƒ“ƒ‹[ƒv
+	glutMainLoop();	//ã€€ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—
 
 	return 0;
 }
@@ -66,7 +66,7 @@ int main( int argc, char **argv ){
 
 //----------------------------------------------------------------------------------------------------
 // Name : Initialize()
-// Desc : ‰Šú‰»ˆ—
+// Desc : åˆæœŸåŒ–å‡¦ç†
 //----------------------------------------------------------------------------------------------------
 void Initialize(){
 	const GLubyte *version = glGetString(GL_VERSION);
@@ -77,13 +77,13 @@ void Initialize(){
 	printf("%s\n", vender);
 	printf("%s\n", renderer);
 
-	//@ƒoƒbƒNƒoƒbƒtƒ@‚ğƒNƒŠƒA‚·‚éF‚Ìw’è
+	//ã€€ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹è‰²ã®æŒ‡å®š
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 	
-	//@[“xƒeƒXƒgON
+	//ã€€æ·±åº¦ãƒ†ã‚¹ãƒˆON
 	glEnable(GL_DEPTH_TEST);
 	
-	//@ƒ‰ƒCƒeƒBƒ“ƒO
+	//ã€€ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°
 	float pos[4] = { 0.0f, 10.0f, 10.0f, 1.0f };
 	float amb[4] = { 0.3f, 0.3f, 0.3f, 1.0f };
 	float dif[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -94,46 +94,46 @@ void Initialize(){
 	glLightfv(GL_LIGHT0, GL_AMBIENT, amb);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, dif);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, spe);
-	glEnable(GL_NORMALIZE);//–@ü‚Ì³‹K‰»
+	glEnable(GL_NORMALIZE);//æ³•ç·šã®æ­£è¦åŒ–
 
-	glutIgnoreKeyRepeat(GL_TRUE);//ƒL[ƒŠƒs[ƒg‚ğ–³‹
+	glutIgnoreKeyRepeat(GL_TRUE);//ã‚­ãƒ¼ãƒªãƒ”ãƒ¼ãƒˆã‚’ç„¡è¦–
 	mqoInit();
 	p1 = new Player();
 
-	//@ƒEƒBƒ“ƒhƒE‚ğ•\¦
+	//ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¡¨ç¤º
 	glutShowWindow();
 }
 
 //---------------------------------------------------------------------------------------------------
 // Name : Idle()
-// Desc : ƒAƒCƒhƒŠƒ“ƒO‚Ìˆ—
+// Desc : ã‚¢ã‚¤ãƒ‰ãƒªãƒ³ã‚°æ™‚ã®å‡¦ç†
 //---------------------------------------------------------------------------------------------------
 void Idle(){
-	//@‰É‚È‚ÉÄ•`‰æ
+	//ã€€æš‡ãªæ™‚ã«å†æç”»
 	glutPostRedisplay();
 }
 void Timer(int value){
 	glutTimerFunc( TIMER_WAIT, Timer, 0);
-	Display();	//ŸƒtƒŒ[ƒ€‚Ì•`‰æ
+	Display();	//æ¬¡ãƒ•ãƒ¬ãƒ¼ãƒ ã®æç”»
 }
 
 //---------------------------------------------------------------------------------------------------
 // Name : Reshape()
-// Desc : ƒTƒCƒY•ÏX
+// Desc : ã‚µã‚¤ã‚ºå¤‰æ›´
 //---------------------------------------------------------------------------------------------------
 void Reshape(int x, int y){
-	//@ƒEƒBƒ“ƒhƒEƒTƒCƒY‚ğ•Û‘¶
+	//ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’ä¿å­˜
 	WindowWidth = x;
 	WindowHeight = y;
 
-	//@ƒTƒCƒYƒ`ƒFƒbƒN
+	//ã€€ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 	if ( WindowWidth < 1 ) WindowWidth = 1;
 	if ( WindowHeight < 1 ) WindowHeight = 1;
 
-	//@ƒrƒ…[ƒ|[ƒg‚Ìİ’è
+	//ã€€ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
 	glViewport(0, 0, WindowWidth, WindowHeight);
 
-	//@Ë‰es—ñ‚Ìİ’è
+	//ã€€å°„å½±è¡Œåˆ—ã®è¨­å®š
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(45.0, (double)WindowWidth/(double)WindowHeight, 0.1, 1000.0);
@@ -141,12 +141,12 @@ void Reshape(int x, int y){
 
 //--------------------------------------------------------------------------------------------------
 // Name : Render2D()
-// Desc : 2ŸŒ³ƒV[ƒ“‚Ì•`‰æ
+// Desc : 2æ¬¡å…ƒã‚·ãƒ¼ãƒ³ã®æç”»
 //--------------------------------------------------------------------------------------------------
 void Render2D(){
 	bool isLighting = false;
 	
-	//@ŠÔŒv‘ª‚ÆFPSZo
+	//ã€€æ™‚é–“è¨ˆæ¸¬ã¨FPSç®—å‡º
 	CurrentCount = glutGet(GLUT_ELAPSED_TIME);
 	CurrentTime = (CurrentCount - LastCount)/1000.0;
 	FrameCount++;
@@ -158,7 +158,7 @@ void Render2D(){
 		LastTime = CurrentTime;
 	}	
 
-	//@3D@¨@2D
+	//ã€€3Dã€€â†’ã€€2D
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
 	glLoadIdentity();
@@ -173,7 +173,7 @@ void Render2D(){
 		glDisable(GL_LIGHTING);
 	}
 
-	//@•¶š‚Ì•`‰æ
+	//ã€€æ–‡å­—ã®æç”»
 
 	p1->Render2D();	
 	
@@ -184,7 +184,7 @@ void Render2D(){
 			glEnable(GL_LIGHTING);
 	}
 	
-	//@2D@¨@3D
+	//ã€€2Dã€€â†’ã€€3D
 	glPopMatrix();
 	glLoadIdentity();
 	glMatrixMode(GL_PROJECTION);
@@ -195,7 +195,7 @@ void Render2D(){
 
 //--------------------------------------------------------------------------------------------------
 // Name : Render3D()
-// Desc : 3ŸŒ³ƒV[ƒ“‚Ì•`‰æ
+// Desc : 3æ¬¡å…ƒã‚·ãƒ¼ãƒ³ã®æç”»
 //--------------------------------------------------------------------------------------------------
 void Render3D(){
 	p1->Render3D();
@@ -203,39 +203,39 @@ void Render3D(){
 
 //---------------------------------------------------------------------------------------------------
 // Name : Display()
-// Desc : ƒEƒBƒ“ƒhƒE‚Ö‚Ì•`‰æ
+// Desc : ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã¸ã®æç”»
 //---------------------------------------------------------------------------------------------------
 void Display(){
 	
-	//@ƒoƒbƒNƒoƒbƒtƒ@‚ğƒNƒŠƒA
+	//ã€€ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’ã‚¯ãƒªã‚¢
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	//@ƒ‚ƒfƒ‹ƒrƒ…[s—ñ‚Ìİ’è
+	//ã€€ãƒ¢ãƒ‡ãƒ«ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã®è¨­å®š
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	//@‹“_‚Ìİ’è
+	//ã€€è¦–ç‚¹ã®è¨­å®š
 	p1->LookpointSet();
 
 	//
 	glPushMatrix();
 	
-	//@3DƒV[ƒ“‚Ì•`‰æ
+	//ã€€3Dã‚·ãƒ¼ãƒ³ã®æç”»
 	Render3D();	
 
-	//@2DƒV[ƒ“‚Ì•`‰æ
+	//ã€€2Dã‚·ãƒ¼ãƒ³ã®æç”»
 	Render2D();
 
 	//
 	glPopMatrix();
 
-	//@ƒ_ƒuƒ‹ƒoƒbƒtƒ@
+	//ã€€ãƒ€ãƒ–ãƒ«ãƒãƒƒãƒ•ã‚¡
 	glutSwapBuffers();
 }
 
 //---------------------------------------------------------------------------------------------------
 // Name : Mouse()
-// Desc : ƒ}ƒEƒXˆ—
+// Desc : ãƒã‚¦ã‚¹å‡¦ç†
 //---------------------------------------------------------------------------------------------------
 void Mouse(int button, int state, int x, int y){
 	switch ( button )
@@ -282,21 +282,21 @@ void Mouse(int button, int state, int x, int y){
 
 //--------------------------------------------------------------------------------------------------
 // Name : Motion()
-// Desc : ƒ}ƒEƒXƒhƒ‰ƒbƒO
+// Desc : ãƒã‚¦ã‚¹ãƒ‰ãƒ©ãƒƒã‚°æ™‚
 //-------------------------------------------------------------------------------------------------
 void Motion(int x, int y){
 }
 
 //--------------------------------------------------------------------------------------------------
 // Name : PassiveMotion()
-// Desc : ƒ}ƒEƒXˆÚ“®
+// Desc : ãƒã‚¦ã‚¹ç§»å‹•æ™‚
 //--------------------------------------------------------------------------------------------------
 void PassiveMotion(int x, int y){
 }
 
 //--------------------------------------------------------------------------------------------------
 // Name : Keyboard()
-// Desc : ƒL[ƒ{[ƒhˆ—
+// Desc : ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰å‡¦ç†
 //--------------------------------------------------------------------------------------------------
 void Keyboard(unsigned char key, int x, int y){
 	p1->KeyStateSet((int)key,true);
@@ -317,7 +317,7 @@ void KeyboardUp(unsigned char key,int x,int y){
 
 //--------------------------------------------------------------------------------------------------
 // Name : Special()
-// Desc : “ÁêƒL[ˆ—
+// Desc : ç‰¹æ®Šã‚­ãƒ¼å‡¦ç†
 //--------------------------------------------------------------------------------------------------
 void Special(int key, int x, int y){
 	p1->KeyStateSet(key,true);
@@ -395,7 +395,7 @@ void SpecialUp(int key,int x,int y){
 
 //--------------------------------------------------------------------------------------------------
 // Name : Close()
-// Desc : Œã•Ğ•t‚¯
+// Desc : å¾Œç‰‡ä»˜ã‘
 //--------------------------------------------------------------------------------------------------
 void Close(){
 	delete p1;
@@ -404,7 +404,7 @@ void Close(){
 
 //--------------------------------------------------------------------------------------------------
 // Name : glutRenderText()
-// Desc : ASCII•¶š—ñ‚Ì•`‰æ
+// Desc : ASCIIæ–‡å­—åˆ—ã®æç”»
 //--------------------------------------------------------------------------------------------------
 void glutRenderText(void* bitmapfont, char*text){
 	for ( int i=0; i<(int)strlen(text); i++ )
@@ -413,7 +413,7 @@ void glutRenderText(void* bitmapfont, char*text){
 
 //--------------------------------------------------------------------------------------------------
 // Name : glutToggleFullScreen()
-// Desc : ƒtƒ‹ƒXƒNƒŠ[ƒ“‚ÆƒEƒBƒ“ƒhƒEƒ‚[ƒh‚ÌØ‚è‘Ö‚¦
+// Desc : ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®åˆ‡ã‚Šæ›¿ãˆ
 //--------------------------------------------------------------------------------------------------
 void glutToggleFullScreen(){
 	static bool FullScreenMode = false;
