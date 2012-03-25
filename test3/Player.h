@@ -19,7 +19,7 @@ private:
 	Vector3 model_pos,model_vec;
 	Vector3 cam_pos,target_pos;
 	double ay,dash_charge,cam_angle[2],cam_zoom;
-	int model_state;
+	int model_state,dash_time1;
 	unsigned int keyFlag;
 	enum eState{Wait,Dash};
 

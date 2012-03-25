@@ -1,7 +1,7 @@
 #include "Player.h"
 
 //int型は32bitなので記憶できるキーは32個まで
-int g_keys[]= {GLUT_KEY_UP,GLUT_KEY_DOWN,
+const static int g_keys[]= {GLUT_KEY_UP,GLUT_KEY_DOWN,
 	GLUT_KEY_LEFT,GLUT_KEY_RIGHT,
 	' ','h','j','k','l','u','i','z','x'
 };
@@ -87,15 +87,24 @@ void Player::Move(){
 			if(model_pos.z > 5.0) model_pos.z = 5.0;
 		}
 
-		if(KeyStateGet('x')) ay -= 1.0;
-		if(KeyStateGet('z')) ay += 1.0;
-		if(KeyStateGet(' ')) dash_charge +=0.02;
+		if(KeyStateGet('x')){
+			 ay -= 1.0;
+		}
+		if(KeyStateGet('z')){
+			 ay += 1.0;
+		}
+		if(KeyStateGet(' ')){
+			dash_charge +=0.02;
+//			sprintf(,"%d",);
+		}
 	}else if(model_state == Dash){
-		target_pos.x=model_pos.x;
-		target_pos.y=model_pos.y;
-		target_pos.z=model_pos.z;
-		model_state=Wait; dash_charge=0.0;	
-		target_pos.x = 0.0; target_pos.y = 0.0; target_pos.z = 0.0;
+		if(dash_time1++>100){
+			target_pos.x=model_pos.x;
+			target_pos.y=model_pos.y;
+			target_pos.z=model_pos.z;
+			model_state=Wait; dash_charge=0.0;	
+			target_pos.x = 0.0; target_pos.y = 0.0; target_pos.z = 0.0;
+		}
 	}
 }
 
