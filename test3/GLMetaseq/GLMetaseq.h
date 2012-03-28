@@ -491,11 +491,13 @@ typedef struct {
 
 __GLMETASEQ_C__EXTERN int g_isVBOSupported;	// OpenGLの頂点バッファのサポート有無
 
+#ifdef WIN32	
 	// VBO Extension 関数のポインタ
 	__GLMETASEQ_C__EXTERN PFNGLGENBUFFERSARBPROC glGenBuffersARB;		// VBO 名前生成
 	__GLMETASEQ_C__EXTERN PFNGLBINDBUFFERARBPROC glBindBufferARB;		// VBO 結びつけ
 	__GLMETASEQ_C__EXTERN PFNGLBUFFERDATAARBPROC glBufferDataARB;		// VBO データロード
 	__GLMETASEQ_C__EXTERN PFNGLDELETEBUFFERSARBPROC glDeleteBuffersARB;	// VBO 削除
+#endif
 
 #undef __GLMETASEQ_C__EXTERN
 

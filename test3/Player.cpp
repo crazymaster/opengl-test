@@ -8,8 +8,11 @@ const static int g_keys[]= {GLUT_KEY_UP,GLUT_KEY_DOWN,
 
 Player::Player():quad1(6.0,6.0),quad2(6.0,6.0){
 	quad2.zPos = -24.0;
+#ifdef WIN32
+	mqoModel = mqoCreateModel("GLMetaseq/Models/tachikoma.mqo",0.02);
+#else
 	model.Load("XMesh/Models/dosei.x");
-//	mqoModel = mqoCreateModel("GLMetaseq/Models/tachikoma.mqo",0.02);
+#endif
 	model_pos.x = 0.0; model_pos.y = 1.0; model_pos.z = 0.0;
 	ay = 0.0; dash_charge = 0.0;
 	model_state=Wait; keyFlag=0;
@@ -18,7 +21,9 @@ Player::Player():quad1(6.0,6.0),quad2(6.0,6.0){
 }
 
 Player::~Player(){
-//	mqoDeleteModel(mqoModel);	
+#ifdef WIN32
+	mqoDeleteModel(mqoModel);	
+#endif
 }
 
 void Player::Render3D(){
@@ -31,9 +36,12 @@ void Player::Render3D(){
 	glRotated(ay,0.0,1.0,0.0);
 
 	//　モデルの描画
+#ifdef WIN32
+	mqoCallModel(mqoModel);
+#else
 	float scale = 2.0f/model.sphere.radius;	//　拡大係数
 	model.Render(scale);	//　描画
-//	mqoCallModel(mqoModel);
+#endif
 
 	glPopMatrix();
 }
