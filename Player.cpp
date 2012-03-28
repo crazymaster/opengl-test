@@ -8,16 +8,17 @@ const static int g_keys[]= {GLUT_KEY_UP,GLUT_KEY_DOWN,
 
 Player::Player():quad1(6.0,6.0),quad2(6.0,6.0){
 	quad2.zPos = -24.0;
-#ifdef WIN32
-	mqoModel = mqoCreateModel("GLMetaseq/Models/tachikoma.mqo",0.02);
-#else
-	model.Load("XMesh/Models/dosei.x");
-#endif
 	model_pos.x = 0.0; model_pos.y = 1.0; model_pos.z = 0.0;
 	ay = 0.0; dash_charge = 0.0;
 	model_state=Wait; keyFlag=0;
 	cam_angle[0]=0.0; cam_angle[1]=0.0; cam_zoom=8.0;
 	target_pos.x = 0.0; target_pos.y = 0.0; target_pos.z = 0.0;
+#ifdef WIN32
+	mqoModel = mqoCreateModel("GLMetaseq/Models/tachikoma.mqo",0.02);
+	model_pos.y= -0.05;
+#else
+	model.Load("XMesh/Models/dosei.x");
+#endif
 }
 
 Player::~Player(){

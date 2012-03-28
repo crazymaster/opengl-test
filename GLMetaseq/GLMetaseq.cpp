@@ -211,7 +211,7 @@ void mqoInit(void)
 	glDeleteBuffersARB = NULL;
 
 	if ( g_isVBOSupported ) {
-		printf("OpenGL : 頂点バッファをサポートしているので使用します\n");
+		printf("OpenGL : Vertex Buffer is supported.\n");
 		// GL 関数のポインタを所得する
 		glGenBuffersARB = (PFNGLGENBUFFERSARBPROC) wglGetProcAddress("glGenBuffersARB");
 		glBindBufferARB = (PFNGLBINDBUFFERARBPROC) wglGetProcAddress("glBindBufferARB");
