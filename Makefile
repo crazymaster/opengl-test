@@ -9,8 +9,11 @@
 #
 
 # ターゲットファイル (生成する実行ファイル)
+ifeq ($(OS),Windows_NT) # for Windows
 TARGET = a.exe
-TARGET_LINUX = a.out
+else # for Linux
+TARGET = a.out
+endif
 
 ########################################################
 # Command settings
@@ -41,8 +44,11 @@ CXXFLAGS += -g -pg -O0 -Wall
 
 # 追加のライブラリ
 #
+ifeq ($(OS),Windows_NT) # for Windows
 LDFLAGS = -lglew32 -lfreeglut -lglu32 -lopengl32 -lwinmm -lgdi32
-LDFLAGS_LINUX = -lglut -lGLU -lGL
+else # for Linux
+LDFLAGS = -lglut -lGLU -lGL
+endif
 
 # GUI アプリケーションをコンパイルする際のリンカオプション
 #
@@ -97,18 +103,12 @@ DEPENDS :=$(SRC:.cpp=.d)
 .PHONY: all
 all: $(TARGET)
 
-# linux: linux用 *.out ファイルのビルド
-.PHONY: linux
-linux: $(TARGET_LINUX)
-$(TARGET_LINUX): $(OBJS)
-	$(CXX) $^ $(CXXFLAGS) $(LDFLAGS_LINUX) -o $@
-
 # clean: 生成したターゲット (*.o) を削除
 .PHONY: clean
 clean:
 	$(RM) $(OBJS) $(DEPENDS)
 
-# ターゲットファイル: *.exe ファイルのビルド
+# TARGET: ターゲットファイルのビルド
 $(TARGET): $(OBJS)
 	$(CXX) $^ $(CXXFLAGS) $(LDFLAGS) -o $@
 
