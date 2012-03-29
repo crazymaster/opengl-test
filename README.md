@@ -1,10 +1,17 @@
+test3
+=====
+
+OpenGLのテストプログラム
+
+Windows、Ubuntuで動作確認
+
 make方法
-========
+--------
 
 	$ make
 
 注意
-====
+----
 
 Linux上で
 
