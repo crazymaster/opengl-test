@@ -16,8 +16,7 @@ private:
 	Quadrangle quad1, quad2;
 	XModel model;
 	MQO_MODEL mqoModel;
-	Vector3 model_pos,model_vec;
-	Vector3 cam_pos,target_pos;
+	Vector3 model_pos,dash_vec,cam_pos,target_pos;
 	double ay,dash_charge,cam_angle[2],cam_zoom;
 	int model_state,dash_time1;
 	unsigned int keyFlag;
