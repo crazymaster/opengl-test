@@ -10,7 +10,7 @@ Player::Player():quad1(6.0,6.0),quad2(6.0,6.0){
 	quad2.zPos = -24.0;
 	model_pos.x = 0.0; model_pos.y = 1.0; model_pos.z = 0.0;
 	dash_vec.x = 0.0; dash_vec.y = 0.0; dash_vec.z = 0.0;
-	ay = 0.0; dash_charge = 0.0;
+	ay = 0.0; dash_charge = 0.0; str_charge = 0;
 	model_state=Wait; keyFlag=0;
 	cam_angle[0]=0.0; cam_angle[1]=0.0; cam_zoom=8.0;
 	target_pos.x = 0.0; target_pos.y = 0.0; target_pos.z = 0.0;
@@ -49,7 +49,10 @@ void Player::Render3D(){
 }
 
 void Player::Render2D(){
-// 	void glutBitmapString();
+	void *font = GLUT_BITMAP_HELVETICA_18;
+	glColor4d(1.0, 1.0, 1.0, 1.0);
+	glRasterPos2d(15.0, 15.0);
+  	glutBitmapString(font,reinterpret_cast<const unsigned char*>("Hello World"));
 }
 
 void Player::KeyStateSet(int key,bool state){
@@ -107,7 +110,7 @@ void Player::Move(){
 		}
 		if(KeyStateGet(' ')){
 			dash_charge +=0.02;
-//			sprintf(,"%d",(int)(dash_charge*100));
+		// 	sprintf(str_charge,"%d",(int)(dash_charge*100));
 		}
 	}else if(model_state == Dash){
 		if(dash_time1++>100){

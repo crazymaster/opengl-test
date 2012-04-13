@@ -78,7 +78,7 @@ void Initialize(){
 	printf("%s\n", renderer);
 
 	//　バックバッファをクリアする色の指定
-	glClearColor(0.0, 0.0, 0.0, 1.0);
+	glClearColor(0.0, 0.0, 0.3, 1.0);
 	
 	//　深度テストON
 	glEnable(GL_DEPTH_TEST);
