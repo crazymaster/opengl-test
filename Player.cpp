@@ -7,11 +7,11 @@ const static int g_keys[]= {GLUT_KEY_UP,GLUT_KEY_DOWN,
 };
 
 Player::Player():quad1(6.0,6.0),quad2(6.0,6.0){
-	quad2.zPos = -24.0;
+	quad2.zPos = -32.0;
 	model_pos.x = 0.0; model_pos.y = 1.0; model_pos.z = 0.0;
 	dash_vec.x = 0.0; dash_vec.y = 0.0; dash_vec.z = 0.0;
-	ay = 0.0; dash_charge = 0.0; str_charge = 0;
-	model_state=Wait; keyFlag=0;
+	ay = 0.0; dash_charge = 0.0; str_charge[0] = '\0';
+	model_state = WAIT; keyFlag=0;
 	cam_angle[0]=0.0; cam_angle[1]=0.0; cam_zoom=8.0;
 	target_pos.x = 0.0; target_pos.y = 0.0; target_pos.z = 0.0;
 #ifdef WIN32
@@ -50,9 +50,9 @@ void Player::Render3D(){
 
 void Player::Render2D(){
 	void *font = GLUT_BITMAP_HELVETICA_18;
-	glColor4d(1.0, 1.0, 1.0, 1.0);
+	glColor4d(1.0, 1.0, 1.0, 0.8);
 	glRasterPos2d(15.0, 15.0);
-  	glutBitmapString(font,reinterpret_cast<const unsigned char*>("Hello World"));
+  	glutBitmapString(font,reinterpret_cast<const unsigned char*>(str_charge));
 }
 
 void Player::KeyStateSet(int key,bool state){
@@ -64,7 +64,7 @@ void Player::KeyStateSet(int key,bool state){
 	}
 }
 
-int  Player::KeyStateGet(int key){
+int Player::KeyStateGet(int key){
 	for(unsigned int i=0;i<sizeof(keyFlag)*8;i++){
 		if(key == g_keys[i]) return keyFlag & 1<<i;
 	}
@@ -72,10 +72,10 @@ int  Player::KeyStateGet(int key){
 }
 
 void Player::Move(){
-	if(model_state == Wait){
+	if(model_state == WAIT){	// 待機中
 		Vector3 model_vec;
 		if(!(KeyStateGet(' ')) && dash_charge>0.0)
-			model_state=Dash;
+			model_state = DASH;
 		model_vec.x = 0.1; model_vec.z = 0.1;
 		if( (KeyStateGet(GLUT_KEY_LEFT) && KeyStateGet(GLUT_KEY_UP)) ||
 			(KeyStateGet(GLUT_KEY_LEFT) && KeyStateGet(GLUT_KEY_DOWN)) ||
@@ -110,9 +110,9 @@ void Player::Move(){
 		}
 		if(KeyStateGet(' ')){
 			dash_charge +=0.02;
-		// 	sprintf(str_charge,"%d",(int)(dash_charge*100));
+		 	sprintf(str_charge,"%d",(int)(dash_charge*100));
 		}
-	}else if(model_state == Dash){
+	}else if(model_state == DASH){	// ダッシュ中
 		if(dash_time1++>100){
 			target_pos.x = model_pos.x;
 			target_pos.y = model_pos.y;
@@ -124,10 +124,21 @@ void Player::Move(){
 			model_pos.z += dash_vec.z * dash_charge;
 			if((dash_charge-=0.01)<0.0){
 				dash_charge = 0.0;
-				model_state = Wait;
+				model_state = RESET;
 			}
 			target_pos.x = 0.0; target_pos.y = 0.0; target_pos.z = 0.0;
 		}
+	}else if (model_state == RESET){	// モデルを初期位置へ
+		model_pos.x = 0.0;
+		model_pos.y = 1.0;
+	   	model_pos.z = 0.0;
+		str_charge[0] = '\0';
+		model_state = WAIT;
+	}else if (model_state == FLY){
+		model_pos.x += dash_vec.x * dash_charge;
+		model_pos.y += dash_vec.y * dash_charge;
+		model_pos.z += dash_vec.z * dash_charge;
+		dash_charge += 0.1;
 	}
 }
 
