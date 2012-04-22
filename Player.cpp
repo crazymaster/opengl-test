@@ -72,10 +72,10 @@ int Player::KeyStateGet(int key){
 }
 
 void Player::Move(){
-	if(model_state == WAIT){	// 待機中
+	switch (model_state){
+	case WAIT:	// 待機中
 		Vector3 model_vec;
-		if(!(KeyStateGet(' ')) && dash_charge>0.0)
-			model_state = DASH;
+		if(!(KeyStateGet(' ')) && dash_charge>0.0) model_state = DASH;
 		model_vec.x = 0.1; model_vec.z = 0.1;
 		if( (KeyStateGet(GLUT_KEY_LEFT) && KeyStateGet(GLUT_KEY_UP)) ||
 			(KeyStateGet(GLUT_KEY_LEFT) && KeyStateGet(GLUT_KEY_DOWN)) ||
@@ -112,7 +112,8 @@ void Player::Move(){
 			dash_charge +=0.02;
 		 	sprintf(str_charge,"%d",(int)(dash_charge*100));
 		}
-	}else if(model_state == DASH){	// ダッシュ中
+		break;
+	case DASH:	// ダッシュ中
 		if(dash_time1++>100){
 			target_pos.x = model_pos.x;
 			target_pos.y = model_pos.y;
@@ -128,17 +129,20 @@ void Player::Move(){
 			}
 			target_pos.x = 0.0; target_pos.y = 0.0; target_pos.z = 0.0;
 		}
-	}else if (model_state == RESET){	// モデルを初期位置へ
+		break;
+	case RESET:	// モデルを初期位置へ
 		model_pos.x = 0.0;
 		model_pos.y = 1.0;
 	   	model_pos.z = 0.0;
 		str_charge[0] = '\0';
 		model_state = WAIT;
-	}else if (model_state == FLY){
+		break;
+	case FLY: 
 		model_pos.x += dash_vec.x * dash_charge;
 		model_pos.y += dash_vec.y * dash_charge;
 		model_pos.z += dash_vec.z * dash_charge;
 		dash_charge += 0.1;
+		break;
 	}
 }
 
