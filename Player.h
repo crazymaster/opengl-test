@@ -13,7 +13,8 @@ struct Vector3{ double x,y,z; };
 
 class Player{
 private:
-	Quadrangle quad1, quad2;
+	Quadrangle3D quad1, quad2;
+	Quadrangle2D charge_bar;
 	XModel model;
 	MQO_MODEL mqoModel;
 	Vector3 model_pos,dash_vec,cam_pos,target_pos;

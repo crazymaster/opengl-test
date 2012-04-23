@@ -53,6 +53,8 @@ void Player::Render2D(){
 	glColor4d(1.0, 1.0, 1.0, 0.8);
 	glRasterPos2d(15.0, 15.0);
   	glutBitmapString(font,reinterpret_cast<const unsigned char*>(str_charge));
+
+	charge_bar.Render();
 }
 
 void Player::KeyStateSet(int key,bool state){
@@ -114,21 +116,25 @@ void Player::Move(){
 		}
 		break;
 	case DASH:	// ダッシュ中
+		target_pos.x = model_pos.x;
+		target_pos.y = model_pos.y;
+		target_pos.z = model_pos.z;
+		dash_vec.x = -sin(ay/180 * M_PI);
+		dash_vec.z = -cos(ay/180 * M_PI);
+		model_pos.x += dash_vec.x * dash_charge;
+		model_pos.y += dash_vec.y * dash_charge;
+		model_pos.z += dash_vec.z * dash_charge;
+		if((dash_charge-=0.01)<0.0) dash_charge = 0.0;
+	// 	float dis = sqrt(pow(model_pos.x - quad2.xPos, 2) + pow(model_pos.z - quad2.zPos, 2));
 		if(dash_time1++>100){
-			target_pos.x = model_pos.x;
-			target_pos.y = model_pos.y;
-			target_pos.z = model_pos.z;
-			dash_vec.x = -sin(ay/180 * M_PI);
-			dash_vec.z = -cos(ay/180 * M_PI);
-			model_pos.x += dash_vec.x * dash_charge;
-			model_pos.y += dash_vec.y * dash_charge;
-			model_pos.z += dash_vec.z * dash_charge;
-			if((dash_charge-=0.01)<0.0){
-				dash_charge = 0.0;
-				model_state = RESET;
-			}
-			target_pos.x = 0.0; target_pos.y = 0.0; target_pos.z = 0.0;
+			dash_time1 = 0;
+			ay = 0.0;
+			dash_vec.x = 0.0;
+			dash_vec.y = 0.0;
+			dash_vec.z = 0.0;
+			model_state = RESET;
 		}
+		target_pos.x = 0.0; target_pos.y = 0.0; target_pos.z = 0.0;
 		break;
 	case RESET:	// モデルを初期位置へ
 		model_pos.x = 0.0;
@@ -138,10 +144,14 @@ void Player::Move(){
 		model_state = WAIT;
 		break;
 	case FLY: 
+		dash_vec.y = 1.0;
 		model_pos.x += dash_vec.x * dash_charge;
 		model_pos.y += dash_vec.y * dash_charge;
 		model_pos.z += dash_vec.z * dash_charge;
 		dash_charge += 0.1;
+		if (dash_time1++ > 100){
+			dash_time1 = 0;
+		}
 		break;
 	}
 }
