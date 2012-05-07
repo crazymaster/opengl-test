@@ -74,6 +74,7 @@ int Player::KeyStateGet(int key){
 }
 
 void Player::Move(){
+	float distance;
 	switch (model_state){
 	case WAIT:	// 待機中
 		Vector3 model_vec;
@@ -125,7 +126,7 @@ void Player::Move(){
 		model_pos.y += dash_vec.y * dash_charge;
 		model_pos.z += dash_vec.z * dash_charge;
 		if((dash_charge-=0.01)<0.0) dash_charge = 0.0;
-	// 	float dis = sqrt(pow(model_pos.x - quad2.xPos, 2) + pow(model_pos.z - quad2.zPos, 2));
+	 	distance = sqrt(pow(model_pos.x - quad2.xPos, 2) + pow(model_pos.z - quad2.zPos, 2));
 		if(dash_time1++>100){
 			dash_time1 = 0;
 			ay = 0.0;
