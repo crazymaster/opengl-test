@@ -19,8 +19,8 @@ private:
 	MQO_MODEL mqoModel;
 	Vector3 model_pos,dash_vec,cam_pos,target_pos;
 	double ay,dash_charge,cam_angle[2],cam_zoom;
-	char str_charge[16];
-	int model_state,dash_time1;
+	char str_charge[32], str_score[32], str_total[32];
+	int model_state, dash_time1, total;
 	unsigned int keyFlag;
 	enum eState{WAIT, DASH, RESET, FLY};
 

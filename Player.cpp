@@ -10,7 +10,8 @@ Player::Player():quad1(6.0,6.0),quad2(6.0,6.0){
 	quad2.zPos = -32.0;
 	model_pos.x = 0.0; model_pos.y = 1.0; model_pos.z = 0.0;
 	dash_vec.x = 0.0; dash_vec.y = 0.0; dash_vec.z = 0.0;
-	ay = 0.0; dash_charge = 0.0; str_charge[0] = '\0';
+	ay = 0.0; dash_charge = 0.0;
+	str_charge[0] = '\0'; str_score[0] = '\0'; str_total[0] = '\0';
 	model_state = WAIT; keyFlag=0;
 	cam_angle[0]=0.0; cam_angle[1]=0.0; cam_zoom=8.0;
 	target_pos.x = 0.0; target_pos.y = 0.0; target_pos.z = 0.0;
@@ -127,13 +128,22 @@ void Player::Move(){
 		model_pos.z += dash_vec.z * dash_charge;
 		if((dash_charge-=0.01)<0.0) dash_charge = 0.0;
 	 	distance = sqrt(pow(model_pos.x - quad2.xPos, 2) + pow(model_pos.z - quad2.zPos, 2));
-		if(dash_time1++>100){
+		sprintf(str_score, "Score: %d", (int)(9000 - distance * 1000));
+		if(dash_time1++ > 100){
 			dash_time1 = 0;
 			ay = 0.0;
 			dash_vec.x = 0.0;
 			dash_vec.y = 0.0;
 			dash_vec.z = 0.0;
-			model_state = RESET;
+			str_score[0] = '\0';
+			if (distance < 9.0){
+				total += (int)(9000 - distance * 1000);
+				sprintf(str_total, "Total: %d", total);
+				model_state = RESET;
+			}else{
+				total = 0;
+				str_total[0] = '\0';
+			}
 		}
 		target_pos.x = 0.0; target_pos.y = 0.0; target_pos.z = 0.0;
 		break;

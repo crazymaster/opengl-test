@@ -62,7 +62,7 @@ void Quadrangle2D::Render(){
 
 	//データの関連付け
 	glVertexPointer(2, GL_FLOAT, 0, Vertex2D);//座標
-	glColorPointer(2,GL_FLOAT, 0, Color2D);//色
+	glColorPointer(3,GL_FLOAT, 0, Color2D);//色
 	glNormal3f(0.0, 1.0, 0.0);
 	glDrawArrays(GL_QUADS,0,4);
 	
