@@ -54,6 +54,11 @@ void Player::Render2D(){
 	glColor4d(1.0, 1.0, 1.0, 0.8);
 	glRasterPos2d(15.0, 15.0);
   	glutBitmapString(font,reinterpret_cast<const unsigned char*>(str_charge));
+	glRasterPos2d(15.0, 35.0);
+	glutBitmapString(font,reinterpret_cast<const unsigned char*>(str_score));
+	glRasterPos2d(15.0, 55.0);
+	glutBitmapString(font,reinterpret_cast<const unsigned char*>(str_total));
+
 
 	charge_bar.Render();
 }
@@ -143,6 +148,8 @@ void Player::Move(){
 			}else{
 				total = 0;
 				str_total[0] = '\0';
+				model_state = RESET;
+
 			}
 		}
 		target_pos.x = 0.0; target_pos.y = 0.0; target_pos.z = 0.0;
