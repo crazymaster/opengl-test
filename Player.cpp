@@ -7,7 +7,7 @@ const static int g_keys[]= {GLUT_KEY_UP,GLUT_KEY_DOWN,
 };
 
 Player::Player():quad1(6.0,6.0),quad2(6.0,6.0){
-	quad2.zPos = -32.0;
+	quad2.zPos = -50.0;
 	model_pos.x = 0.0; model_pos.y = 1.0; model_pos.z = 0.0;
 	dash_vec.x = 0.0; dash_vec.y = 0.0; dash_vec.z = 0.0;
 	ay = 0.0; dash_charge = 0.0;
@@ -173,13 +173,13 @@ void Player::Move(){
 			ay = 0.0;
 			dash_charge = 0.0;
 			model_pos.x = 0.0; model_pos.y = 1.0; model_pos.z = 0.0;
-			model_vec.x = 0.0; model_vec.y = 0.0; model_vec.z =  - 1.0;
+			dash_vec.x = 0.0; dash_vec.y = 0.0; dash_vec.z = 0.0;
 			model_state = CHANGE;
 
 		}
 		break;
 	case CHANGE:
-		quad2.zPos =  - (double)(rand() % 400 - 200) / 10.0;
+		quad2.xPos = (double)(rand() % 400 - 200) / 10.0;
 		model_state = WAIT;
 		break;
 	}
