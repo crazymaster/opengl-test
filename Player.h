@@ -22,7 +22,7 @@ private:
 	char str_charge[32], str_score[32], str_total[32];
 	int model_state, dash_time1, total;
 	unsigned int keyFlag;
-	enum eState{WAIT, DASH, RESET, FLY};
+	enum eState{WAIT, DASH, RESET, FLY, CHANGE};
 
 public:
 	Player();

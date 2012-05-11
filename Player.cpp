@@ -129,17 +129,17 @@ void Player::Move(){
 		dash_vec.x = -sin(ay/180 * M_PI);
 		dash_vec.z = -cos(ay/180 * M_PI);
 		model_pos.x += dash_vec.x * dash_charge;
-		model_pos.y += dash_vec.y * dash_charge;
 		model_pos.z += dash_vec.z * dash_charge;
 		if((dash_charge-=0.01)<0.0) dash_charge = 0.0;
 	 	distance = sqrt(pow(model_pos.x - quad2.xPos, 2) + pow(model_pos.z - quad2.zPos, 2));
 		sprintf(str_score, "Score: %d", (int)(9000 - distance * 1000));
-		if(dash_time1++ > 100){
+		if(dash_time1++ > 100 || dash_charge == 0.0){
 			dash_time1 = 0;
 			ay = 0.0;
 			dash_vec.x = 0.0;
 			dash_vec.y = 0.0;
-			dash_vec.z = 0.0;
+			dash_vec.z =  - 1.0;
+			str_charge[0]  = '\0';
 			str_score[0] = '\0';
 			if (distance < 9.0){
 				total += (int)(9000 - distance * 1000);
@@ -148,8 +148,10 @@ void Player::Move(){
 			}else{
 				total = 0;
 				str_total[0] = '\0';
-				model_state = RESET;
-
+				dash_vec.x = 0.0;
+				dash_vec.y = 1.0;
+				dash_vec.z = 0.0;
+				model_state = FLY;
 			}
 		}
 		target_pos.x = 0.0; target_pos.y = 0.0; target_pos.z = 0.0;
@@ -159,17 +161,26 @@ void Player::Move(){
 		model_pos.y = 1.0;
 	   	model_pos.z = 0.0;
 		str_charge[0] = '\0';
-		model_state = WAIT;
+		model_state = CHANGE;
 		break;
 	case FLY: 
-		dash_vec.y = 1.0;
 		model_pos.x += dash_vec.x * dash_charge;
 		model_pos.y += dash_vec.y * dash_charge;
 		model_pos.z += dash_vec.z * dash_charge;
 		dash_charge += 0.1;
 		if (dash_time1++ > 100){
 			dash_time1 = 0;
+			ay = 0.0;
+			dash_charge = 0.0;
+			model_pos.x = 0.0; model_pos.y = 1.0; model_pos.z = 0.0;
+			model_vec.x = 0.0; model_vec.y = 0.0; model_vec.z =  - 1.0;
+			model_state = CHANGE;
+
 		}
+		break;
+	case CHANGE:
+		quad2.zPos =  - (double)(rand() % 400 - 200) / 10.0;
+		model_state = WAIT;
 		break;
 	}
 }
