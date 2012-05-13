@@ -20,9 +20,9 @@ private:
 	Vector3 model_pos,dash_vec,cam_pos,target_pos;
 	double ay,dash_charge,cam_angle[2],cam_zoom;
 	char str_charge[32], str_score[32], str_total[32];
-	int model_state, dash_time1, total;
+	int dash_time1, total;
 	unsigned int keyFlag;
-	enum eState{WAIT, DASH, RESET, FLY, CHANGE};
+	enum eState{WAIT, DASH, RESET, FLY, CHANGE} model_state;
 
 public:
 	Player();
@@ -30,7 +30,7 @@ public:
 	void Render3D();
 	void Render2D();
 	void KeyStateSet(int, bool);
-	int KeyStateGet(int);
+	bool KeyStateGet(int);
 	void Move();
 	void LookpointSet();
 

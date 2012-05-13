@@ -30,6 +30,7 @@ Player::~Player(){
 }
 
 void Player::Render3D(){
+	LookpointSet();
 	quad1.Render();
 	quad2.Render();
 
@@ -58,9 +59,6 @@ void Player::Render2D(){
 	glutBitmapString(font,reinterpret_cast<const unsigned char*>(str_score));
 	glRasterPos2d(15.0, 55.0);
 	glutBitmapString(font,reinterpret_cast<const unsigned char*>(str_total));
-
-
-	charge_bar.Render();
 }
 
 void Player::KeyStateSet(int key,bool state){
@@ -72,9 +70,9 @@ void Player::KeyStateSet(int key,bool state){
 	}
 }
 
-int Player::KeyStateGet(int key){
+bool Player::KeyStateGet(int key){
 	for(unsigned int i=0;i<sizeof(keyFlag)*8;i++){
-		if(key == g_keys[i]) return keyFlag & 1<<i;
+		if(key == g_keys[i] && keyFlag & 1<<i) return true;
 	}
 	return false;
 }

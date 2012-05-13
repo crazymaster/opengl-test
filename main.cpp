@@ -214,9 +214,6 @@ void Display(){
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	//　視点の設定
-	p1->LookpointSet();
-
 	//
 	glPushMatrix();
 	
