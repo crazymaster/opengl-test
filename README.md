@@ -1,5 +1,5 @@
-test3
-=====
+opengl-test
+===========
 
 OpenGLのテストプログラム
 
