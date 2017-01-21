@@ -35,3 +35,8 @@ Linux上で
 - u,i : カメラ距離調整
 - z,x : モデル回転
 
+参考サイト
+---------
+
+- [☆PROJECT ASURA☆ [OpenGL]　『メッシュを読み込む！！(2)　～Xファイル～』](http://asura.iaigiri.com/OpenGL/gl44.html)
+- [「攻殻機動隊」「電脳コイル」の世界を実現！ - ARToolKitを使った拡張現実感プログラミング - 工学ナビ](http://kougaku-navi.net/ARToolKit/index.html)
